@@ -10,6 +10,14 @@ env.*
 # EXCEPTION: .env.example IS safe to commit (contains no real credentials)
 !.env.example
 
+# Database initialization script - contains sensitive credentials
+init_db.py
+
+# Environment-specific configuration files (may contain real credentials)
+env.development
+env.production
+env.staging
+
 # Python
 __pycache__/
 *.py[cod]

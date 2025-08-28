@@ -46,7 +46,9 @@ CORS(app, origins=[
 ], supports_credentials=True)
 
 # MongoDB Configuration
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://ankitkalra13:0yQ4N2JY1hJVXmyT@cluster0.j2yojqe.mongodb.net')
+MONGO_URI = os.getenv('MONGO_URI')
+if not MONGO_URI:
+    raise ValueError("MONGO_URI environment variable is required. Please set it in your .env file.")
 client = MongoClient(MONGO_URI)
 db = client['outre_couture']
 
