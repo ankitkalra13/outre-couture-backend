@@ -1,0 +1,153 @@
+services:
+  # Development Environment
+  - type: web
+    name: outre-couture-backend-dev
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: FLASK_ENV
+        value: development
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: true
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_DEFAULT_SENDER
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@outrecouture.com
+      - key: FLASK_DEBUG
+        value: true
+      - key: BASE_URL
+        value: https://outre-couture-backend-dev.onrender.com/api
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 10000
+      - key: JWT_EXPIRATION_HOURS
+        value: 24
+      - key: JWT_REFRESH_EXPIRATION_DAYS
+        value: 7
+      - key: BCRYPT_ROUNDS
+        value: 12
+      - key: PASSWORD_MIN_LENGTH
+        value: 8
+      - key: MAX_LOGIN_ATTACKS
+        value: 5
+      - key: LOGIN_LOCKOUT_MINUTES
+        value: 15
+
+  # Staging Environment
+  - type: web
+    name: outre-couture-backend-staging
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: FLASK_ENV
+        value: staging
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: true
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_DEFAULT_SENDER
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@outrecouture.com
+      - key: FLASK_DEBUG
+        value: false
+      - key: BASE_URL
+        value: https://outre-couture-backend-staging.onrender.com/api
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 10000
+      - key: JWT_EXPIRATION_HOURS
+        value: 24
+      - key: JWT_REFRESH_EXPIRATION_DAYS
+        value: 7
+      - key: BCRYPT_ROUNDS
+        value: 12
+      - key: PASSWORD_MIN_LENGTH
+        value: 8
+      - key: MAX_LOGIN_ATTACKS
+        value: 5
+      - key: LOGIN_LOCKOUT_MINUTES
+        value: 15
+
+  # Production Environment
+  - type: web
+    name: outre-couture-backend-prod
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+      - key: FLASK_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: true
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_DEFAULT_SENDER
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@outrecouture.com
+      - key: FLASK_DEBUG
+        value: false
+      - key: BASE_URL
+        value: https://outre-couture-backend-prod.onrender.com/api
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 10000
+      - key: JWT_EXPIRATION_HOURS
+        value: 24
+      - key: JWT_REFRESH_EXPIRATION_DAYS
+        value: 7
+      - key: BCRYPT_ROUNDS
+        value: 12
+      - key: PASSWORD_MIN_LENGTH
+        value: 8
+      - key: MAX_LOGIN_ATTACKS
+        value: 5
+      - key: LOGIN_LOCKOUT_MINUTES
+        value: 15
