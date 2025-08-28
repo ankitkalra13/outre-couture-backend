@@ -37,18 +37,18 @@ API_HOST = os.getenv('API_HOST', '0.0.0.0')
 API_PORT = int(os.getenv('API_PORT', 5000))
 
 app = Flask(__name__)
-# CORS Configuration - Allow both development and production domains
+# CORS Configuration - Use environment variable for frontend URL
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 CORS(app, origins=[
-    'http://localhost:3000', 
-    'http://localhost:3001',
-    'https://outre-couture.vercel.app',  # Your Vercel domain
-    'https://outre-couture-frontend.vercel.app'  # Alternative Vercel domain
+    FRONTEND_URL,
+    'http://localhost:3000',  # Fallback for development
+    'http://localhost:3001'   # Alternative port
 ], supports_credentials=True)
 
 # MongoDB Configuration
 MONGO_URI = os.getenv('MONGO_URI')
 if not MONGO_URI:
-    raise ValueError("MONGO_URI environment variable is required. Please set it in your .env file.")
+    raise ValueError("MONGO_URI environment variable is required")
 client = MongoClient(MONGO_URI)
 db = client['outre_couture']
 
@@ -752,7 +752,31 @@ def get_products():
         if category_id:
             query['category_id'] = category_id
         
-        products = list(products_collection.find(query, {'_id': 0}).skip(skip).limit(limit))
+        # Add main category filtering
+        main_category_name = request.args.get('main_category_name')
+        if main_category_name:
+            query['main_category_name'] = main_category_name
+        
+        # Add search filtering
+        search = request.args.get('search')
+        if search:
+            query['$or'] = [
+                {'name': {'$regex': search, '$options': 'i'}},
+                {'description': {'$regex': search, '$options': 'i'}}
+            ]
+        
+        # Apply sorting
+        sort_by = request.args.get('sortBy', 'name')
+        sort_options = {
+            'name': [('name', 1)],
+            'name_desc': [('name', -1)],
+            'newest': [('created_at', -1)],
+            'oldest': [('created_at', 1)]
+        }
+        
+        sort_criteria = sort_options.get(sort_by, [('name', 1)])
+        
+        products = list(products_collection.find(query, {'_id': 0}).sort(sort_criteria).skip(skip).limit(limit))
         
         # Convert to JSON serializable format
         products_json = convert_to_json_serializable(products)
@@ -791,8 +815,17 @@ def get_products_by_main_category(main_category_slug):
         limit = int(request.args.get('limit', 50))
         skip = int(request.args.get('skip', 0))
         
-        # Build query
-        query = {'is_active': is_active, 'main_category_slug': main_category_slug}
+        # Build query - check both main_category_slug and main_category_name
+        # Convert main_category_slug to title case for comparison with main_category_name
+        main_category_title = main_category_slug.replace('-', ' ').title()
+        
+        query = {
+            'is_active': is_active,
+            '$or': [
+                {'main_category_slug': main_category_slug},
+                {'main_category_name': main_category_title}
+            ]
+        }
         if sub_category_id:
             query['category_id'] = sub_category_id
         

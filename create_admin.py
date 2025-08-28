@@ -30,7 +30,9 @@ else:
 # MongoDB Configuration
 MONGO_URI = os.getenv('MONGO_URI')
 if not MONGO_URI:
-    raise ValueError("MONGO_URI environment variable is required. Please set it in your .env file.")
+    print("❌ ERROR: MONGO_URI environment variable is required!")
+    print("Please set MONGO_URI in your environment file (env.development, env.staging, or env.production)")
+    sys.exit(1)
 BCRYPT_ROUNDS = int(os.getenv('BCRYPT_ROUNDS', 12))
 
 def hash_password(password):

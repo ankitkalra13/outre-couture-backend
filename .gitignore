@@ -10,13 +10,9 @@ env.*
 # EXCEPTION: .env.example IS safe to commit (contains no real credentials)
 !.env.example
 
-# Database initialization script - contains sensitive credentials
-init_db.py
-
-# Environment-specific configuration files (may contain real credentials)
-env.development
-env.production
-env.staging
+# Database scripts with potential credentials
+Backend/init_db.py
+Backend/create_admin.py
 
 # Python
 __pycache__/
@@ -122,3 +118,7 @@ celerybeat.pid
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+
+
+
