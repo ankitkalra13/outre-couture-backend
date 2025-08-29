@@ -933,15 +933,26 @@ def delete_product(product_id):
 def get_product_by_slug(main_category, slug):
     """Get a product by its SEO slug and main category"""
     try:
-        # Find product by slug and main category
+        # Find product by slug and main category (try multiple approaches)
+        product = None
+        
+        # First try: exact match with main_category_slug
         product = products_collection.find_one({
             'seo_slug': slug,
             'main_category_slug': main_category,
             'is_active': True
         }, {'_id': 0})
         
+        # Second try: match with main_category_name (case-insensitive)
         if not product:
-            # Fallback: try to find by slug only
+            product = products_collection.find_one({
+                'seo_slug': slug,
+                'main_category_name': {'$regex': f'^{main_category}$', '$options': 'i'},
+                'is_active': True
+            }, {'_id': 0})
+        
+        # Third try: find by slug only (fallback)
+        if not product:
             product = products_collection.find_one({
                 'seo_slug': slug,
                 'is_active': True
