@@ -929,6 +929,34 @@ def delete_product(product_id):
     except (ConnectionError, ValueError, TypeError) as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+@app.route('/api/products/slug/<main_category>/<slug>', methods=['GET'])
+def get_product_by_slug(main_category, slug):
+    """Get a product by its SEO slug and main category"""
+    try:
+        # Find product by slug and main category
+        product = products_collection.find_one({
+            'seo_slug': slug,
+            'main_category_slug': main_category,
+            'is_active': True
+        }, {'_id': 0})
+        
+        if not product:
+            # Fallback: try to find by slug only
+            product = products_collection.find_one({
+                'seo_slug': slug,
+                'is_active': True
+            }, {'_id': 0})
+        
+        if not product:
+            return jsonify({'success': False, 'error': 'Product not found'}), 404
+        
+        # Convert to JSON serializable format
+        product_json = convert_to_json_serializable(product)
+        return jsonify({'success': True, 'product': product_json}), 200
+        
+    except (ConnectionError, ValueError, TypeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 # ==================== RFQ APIs ====================
 
 @app.route('/api/rfq', methods=['POST'])
