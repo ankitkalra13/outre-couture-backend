@@ -714,6 +714,12 @@ def create_product():
         if not isinstance(images, list):
             return jsonify({'success': False, 'error': 'Images must be an array'}), 400
         
+        # SEO fields with defaults
+        seo_title = data.get('seo_title', data['name'].strip())
+        seo_description = data.get('seo_description', data['description'].strip()[:160])
+        seo_keywords = data.get('seo_keywords', '')
+        seo_slug = data.get('seo_slug', data['name'].strip().lower().replace(' ', '-'))
+        
         product = {
             'id': str(uuid.uuid4()),
             'name': data['name'].strip(),
@@ -725,6 +731,11 @@ def create_product():
             'images': images,
             'specifications': data.get('specifications', {}),
             'is_active': data.get('is_active', True),
+            # SEO fields
+            'seo_title': seo_title,
+            'seo_description': seo_description,
+            'seo_keywords': seo_keywords,
+            'seo_slug': seo_slug,
             'created_at': datetime.utcnow().isoformat(),
             'updated_at': datetime.utcnow().isoformat(),
             'created_by': str(request.user['user_id'])
@@ -762,7 +773,9 @@ def get_products():
         if search:
             query['$or'] = [
                 {'name': {'$regex': search, '$options': 'i'}},
-                {'description': {'$regex': search, '$options': 'i'}}
+                {'description': {'$regex': search, '$options': 'i'}},
+                {'seo_keywords': {'$regex': search, '$options': 'i'}},
+                {'seo_title': {'$regex': search, '$options': 'i'}}
             ]
         
         # Apply sorting
@@ -879,6 +892,16 @@ def update_product(product_id):
             update_data['specifications'] = data['specifications']
         if 'is_active' in data:
             update_data['is_active'] = data['is_active']
+        
+        # SEO fields
+        if 'seo_title' in data:
+            update_data['seo_title'] = data['seo_title']
+        if 'seo_description' in data:
+            update_data['seo_description'] = data['seo_description']
+        if 'seo_keywords' in data:
+            update_data['seo_keywords'] = data['seo_keywords']
+        if 'seo_slug' in data:
+            update_data['seo_slug'] = data['seo_slug']
         
         products_collection.update_one(
             {'id': product_id},
