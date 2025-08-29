@@ -933,30 +933,66 @@ def delete_product(product_id):
 def get_product_by_slug(main_category, slug):
     """Get a product by its SEO slug and main category"""
     try:
+        print(f"DEBUG: Looking for product with slug '{slug}' in category '{main_category}'")
+        
         # Find product by slug and main category (try multiple approaches)
         product = None
         
         # First try: exact match with main_category_slug
+        print(f"DEBUG: Trying exact match with main_category_slug = '{main_category}'")
         product = products_collection.find_one({
             'seo_slug': slug,
             'main_category_slug': main_category,
             'is_active': True
         }, {'_id': 0})
         
+        if product:
+            print(f"DEBUG: Found product with main_category_slug match: {product.get('name', 'Unknown')}")
+        else:
+            print(f"DEBUG: No product found with main_category_slug = '{main_category}'")
+        
         # Second try: match with main_category_name (case-insensitive)
         if not product:
+            print(f"DEBUG: Trying case-insensitive match with main_category_name = '{main_category}'")
             product = products_collection.find_one({
                 'seo_slug': slug,
                 'main_category_name': {'$regex': f'^{main_category}$', '$options': 'i'},
                 'is_active': True
             }, {'_id': 0})
+            
+            if product:
+                print(f"DEBUG: Found product with main_category_name match: {product.get('name', 'Unknown')}")
+            else:
+                print(f"DEBUG: No product found with main_category_name = '{main_category}'")
         
         # Third try: find by slug only (fallback)
         if not product:
+            print(f"DEBUG: Trying slug-only search")
             product = products_collection.find_one({
                 'seo_slug': slug,
                 'is_active': True
             }, {'_id': 0})
+            
+            if product:
+                print(f"DEBUG: Found product with slug-only search: {product.get('name', 'Unknown')}")
+                print(f"DEBUG: Product category info: main_category_name='{product.get('main_category_name', 'None')}', main_category_slug='{product.get('main_category_slug', 'None')}'")
+            else:
+                print(f"DEBUG: No product found with slug = '{slug}'")
+        
+        # Fourth try: search for products with similar slug (for debugging)
+        if not product:
+            print(f"DEBUG: Searching for products with similar slug patterns...")
+            similar_products = list(products_collection.find({
+                'seo_slug': {'$regex': slug, '$options': 'i'},
+                'is_active': True
+            }, {'_id': 0, 'name': 1, 'seo_slug': 1, 'main_category_name': 1, 'main_category_slug': 1}))
+            
+            if similar_products:
+                print(f"DEBUG: Found {len(similar_products)} products with similar slugs:")
+                for p in similar_products:
+                    print(f"  - {p.get('name', 'Unknown')}: slug='{p.get('seo_slug', 'None')}', category='{p.get('main_category_name', 'None')}'")
+            else:
+                print(f"DEBUG: No products found with similar slug patterns")
         
         if not product:
             return jsonify({'success': False, 'error': 'Product not found'}), 404
@@ -967,6 +1003,8 @@ def get_product_by_slug(main_category, slug):
         
     except (ConnectionError, ValueError, TypeError) as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+
 
 # ==================== RFQ APIs ====================
 
