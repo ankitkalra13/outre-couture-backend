@@ -38,7 +38,7 @@ fi
 
 # Initialize database with sample data
 echo "Initializing database with sample data..."
-python init_db.py
+python3 init_db.py
 
 # Start the Flask application
 echo "Starting Flask application..."
@@ -46,4 +46,4 @@ echo "API will be available at: http://localhost:5000"
 echo "Press Ctrl+C to stop the server"
 echo "=========================================="
 
-python app.py
+python3 app.py
