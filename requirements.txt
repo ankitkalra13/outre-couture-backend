@@ -4,7 +4,7 @@ flask-cors==4.0.0
 python-dotenv==1.0.0
 flask-mail==0.9.1
 Werkzeug==2.3.7
-Pillow==10.0.1
+Pillow==10.4.0
 python-multipart==0.0.6
 PyJWT==2.8.0
 bcrypt==4.1.2

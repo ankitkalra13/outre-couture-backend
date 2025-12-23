@@ -35,7 +35,7 @@ else:
 # Get API configuration from environment
 BASE_URL = os.getenv('BASE_URL', 'http://localhost:5000/api')
 API_HOST = os.getenv('API_HOST', '0.0.0.0')
-API_PORT = int(os.getenv('API_PORT', 5000))
+API_PORT = int(os.getenv('PORT', os.getenv('API_PORT', 5000)))
 
 app = Flask(__name__)
 # CORS Configuration - Use environment variable for frontend URL
@@ -51,7 +51,10 @@ MONGO_URI = os.getenv('MONGO_URI')
 if not MONGO_URI:
     raise ValueError("MONGO_URI environment variable is required")
 client = MongoClient(MONGO_URI)
-db = client['outre_couture']
+
+# Database name - extract from MONGO_URI or use default
+DB_NAME = os.getenv('DB_NAME', 'outre_couture')
+db = client[DB_NAME]
 
 # Collections
 products_collection = db['products']
@@ -61,7 +64,8 @@ rfq_collection = db['rfq_requests']
 # Email Configuration
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
 app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
-app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_TLS'] = os.getenv(
+    'MAIL_USE_TLS', 'true').lower() == 'true'
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
