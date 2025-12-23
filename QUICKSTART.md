@@ -24,7 +24,7 @@ For **each** of the 3 services, add these in Render Dashboard:
 ### Required Variables:
 
 ```
-MONGO_URI = mongodb+srv://ankitkalra13:0yQ4N2JY1hJVXmyT@cluster0.j2yojqe.mongodb.net/outre_couture?retryWrites=true&w=majority
+MONGO_URI = mongodb+srv://username:0yQ4N2JY1hJVsadsadsad@cluster.dadad.mongodb.net/user_name?retryWrites=true&w=majority
 FRONTEND_URL = https://your-frontend-url.com
 ```
 

@@ -24,9 +24,9 @@
 #### Local Development (.env)
 
 ```env
-MONGO_URI=mongodb+srv://...@cluster0.j2yojqe.mongodb.net/outre_couture
+MONGO_URI=mongodb+srv://...@cluster0.adsadad.mongodb.net/outre_coudadsad
 DB_NAME=outre_couture
-JWT_SECRET_KEY=dev-secret-key-change-this-in-production-12345678
+JWT_SECRET_KEY=dev-secret-key-change-this-in-production-134asdada5678
 JWT_ALGORITHM=HS256
 FLASK_ENV=development
 FLASK_DEBUG=true
