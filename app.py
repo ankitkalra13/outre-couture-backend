@@ -5,6 +5,7 @@ A Flask-based REST API for Outre Couture's admin panel and website.
 Provides product management, category management, and RFQ handling with email notifications.
 """
 
+from werkzeug.middleware.proxy_fix import ProxyFix
 import json
 import os
 import re
@@ -38,6 +39,10 @@ API_HOST = os.getenv('API_HOST', '0.0.0.0')
 API_PORT = int(os.getenv('PORT', os.getenv('API_PORT', 5000)))
 
 app = Flask(__name__)
+
+# Configure ProxyFix for handling proxy headers (needed for Render/production)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
 # CORS Configuration - Use environment variable for frontend URL
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 CORS(app, origins=[
