@@ -46,27 +46,11 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 # CORS Configuration - Use environment variable for frontend URL
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 
-# Build comprehensive list of allowed origins
-allowed_origins = [
-    FRONTEND_URL,
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'https://www.outrecouture.com',
-    'https://outrecouture.com',
-    'https://api.outrecouture.com'
-]
-
-# Add custom domain from environment if specified
-CUSTOM_DOMAIN = os.getenv('CUSTOM_DOMAIN')
-if CUSTOM_DOMAIN:
-    allowed_origins.extend([
-        f'https://{CUSTOM_DOMAIN}',
-        f'http://{CUSTOM_DOMAIN}'
-    ])
-
+# For production with custom domains, use wildcard CORS
+# This is necessary because Render's proxy can cause issues with strict CORS
 CORS(app, 
-     resources={r"/*": {"origins": allowed_origins}},
-     supports_credentials=True,
+     resources={r"/api/*": {"origins": "*"}},
+     supports_credentials=False,
      allow_headers=['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
      methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
      expose_headers=['Content-Type', 'Authorization'])
@@ -118,18 +102,6 @@ users_collection = db['users']
 # In-memory storage for login attempts (in production, use Redis)
 login_attempts = {}
 account_lockouts = {}
-
-# CORS after_request handler
-@app.after_request
-def after_request(response):
-    """Ensure CORS headers are set on all responses"""
-    origin = request.headers.get('Origin')
-    if origin in allowed_origins:
-        response.headers['Access-Control-Allow-Origin'] = origin
-        response.headers['Access-Control-Allow-Credentials'] = 'true'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Accept'
-        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    return response
 
 # Helper function to send emails
 
