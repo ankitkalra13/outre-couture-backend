@@ -21,6 +21,9 @@ from bson import ObjectId
 from dotenv import load_dotenv
 import jwt
 import bcrypt
+import boto3
+from botocore.config import Config
+from botocore.exceptions import ClientError
 
 # Load environment-specific configuration
 ENV = os.getenv('FLASK_ENV', 'development')
@@ -68,7 +71,7 @@ db = client[DB_NAME]
 # Collections
 products_collection = db['products']
 categories_collection = db['categories']
-rfq_collection = db['rfq_requests']
+media_pages_collection = db['media_pages']
 
 # Email Configuration
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
@@ -102,6 +105,128 @@ users_collection = db['users']
 # In-memory storage for login attempts (in production, use Redis)
 login_attempts = {}
 account_lockouts = {}
+
+# AWS S3 / CloudFront Configuration
+AWS_REGION = os.getenv('AWS_REGION', 'ap-south-1')
+AWS_S3_BUCKET = os.getenv('AWS_S3_BUCKET')
+AWS_CDN_BASE_URL = os.getenv('AWS_CDN_BASE_URL', '').rstrip('/')
+ALLOWED_IMAGE_TYPES = {'image/jpeg', 'image/png', 'image/webp'}
+ALLOWED_IMAGE_EXTENSIONS = {'jpg', 'jpeg', 'png', 'webp'}
+ALLOWED_UPLOAD_ROOT_FOLDERS = {'products', 'site', 'categories'}
+PRESIGNED_URL_EXPIRY_SECONDS = 300
+
+_s3_client = None
+
+
+def get_s3_client():
+    """Return a cached S3 client, or None if AWS credentials are not configured."""
+    global _s3_client
+    if _s3_client is not None:
+        return _s3_client
+
+    access_key = os.getenv('AWS_ACCESS_KEY_ID')
+    secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+    if not access_key or not secret_key or not AWS_S3_BUCKET:
+        return None
+
+    _s3_client = boto3.client(
+        's3',
+        region_name=AWS_REGION,
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        config=Config(signature_version='s3v4'),
+    )
+    return _s3_client
+
+
+def validate_image_urls(images):
+    """Validate product image URLs before saving to MongoDB."""
+    if not isinstance(images, list):
+        return False, 'Images must be an array'
+
+    for image in images:
+        if not isinstance(image, str) or not image.strip():
+            return False, 'Each image must be a non-empty URL string'
+        if image.startswith('http://') or image.startswith('https://'):
+            continue
+        return False, 'Image URLs must be full http(s) URLs'
+
+    return True, None
+
+
+def extract_s3_key_from_url(image_url):
+    """Extract the S3 object key from a CloudFront or S3 URL."""
+    if not image_url or not AWS_CDN_BASE_URL:
+        return None
+
+    if image_url.startswith(f'{AWS_CDN_BASE_URL}/'):
+        return image_url[len(AWS_CDN_BASE_URL) + 1:]
+
+    bucket_host = f'{AWS_S3_BUCKET}.s3.{AWS_REGION}.amazonaws.com'
+    if image_url.startswith(f'https://{bucket_host}/'):
+        return image_url[len(f'https://{bucket_host}/'):]
+
+    return None
+
+
+def sanitize_path_segment(value):
+    """Convert a label or slug into a safe S3 path segment."""
+    if not value:
+        return ''
+    slug = str(value).lower().strip().replace(' ', '-').replace('_', '-')
+    slug = re.sub(r'[^a-z0-9-]', '', slug)
+    slug = re.sub(r'-+', '-', slug).strip('-')
+    return slug[:80]
+
+
+def build_upload_key(folder, filename, data=None):
+    """Build an S3 object key based on upload folder and optional path metadata."""
+    data = data or {}
+    ext = filename.rsplit('.', 1)[-1].lower() if '.' in filename else 'webp'
+    if ext not in ALLOWED_IMAGE_EXTENSIONS:
+        raise ValueError('Invalid file extension')
+
+    file_id = str(uuid.uuid4())
+
+    if folder == 'products':
+        main_slug = sanitize_path_segment(data.get('mainCategorySlug'))
+        sub_slug = sanitize_path_segment(data.get('subCategorySlug'))
+
+        if not main_slug or not sub_slug:
+            sub_category_id = (data.get('subCategoryId') or '').strip()
+            if sub_category_id:
+                sub_category = categories_collection.find_one(
+                    {'id': sub_category_id, 'type': 'sub'},
+                    {'id': 1, 'slug': 1, 'name': 1, 'main_category_id': 1, '_id': 0}
+                )
+                if sub_category:
+                    sub_slug = sanitize_path_segment(
+                        sub_category.get('slug') or sub_category.get('name'))
+                    main_category = categories_collection.find_one(
+                        {'id': sub_category.get('main_category_id'), 'type': 'main'},
+                        {'slug': 1, 'name': 1, '_id': 0}
+                    )
+                    if main_category:
+                        main_slug = sanitize_path_segment(
+                            main_category.get('slug') or main_category.get('name'))
+
+        if not main_slug or not sub_slug:
+            raise ValueError('mainCategorySlug and subCategorySlug are required for product uploads')
+
+        return f"products/{main_slug}/{sub_slug}/{file_id}.{ext}", None
+
+    if folder == 'site':
+        page_slug = sanitize_path_segment(
+            data.get('pageSlug') or data.get('pageName'))
+        if not page_slug:
+            raise ValueError('pageSlug is required for site uploads')
+        return f"site/{page_slug}/{file_id}.{ext}", None
+
+    if folder == 'categories':
+        return f"categories/{file_id}.{ext}", None
+
+    raise ValueError('Invalid upload folder')
+
 
 # Helper function to send emails
 
@@ -729,14 +854,42 @@ def delete_category(category_id):
         if not existing_category:
             return jsonify({'success': False, 'error': 'Category not found'}), 404
 
-        # Check if category is used by any products
-        products_using_category = products_collection.count_documents(
-            {'category_id': category_id})
-        if products_using_category > 0:
-            return jsonify({
-                'success': False,
-                'error': f'Cannot delete category. {products_using_category} product(s) are using this category.'
-            }), 400
+        category_type = existing_category.get('type', 'main')
+
+        if category_type == 'main':
+            sub_category_ids = [
+                sub['id'] for sub in categories_collection.find(
+                    {'main_category_id': category_id, 'type': 'sub'},
+                    {'id': 1, '_id': 0}
+                )
+            ]
+
+            product_filters = [
+                {'main_category_slug': existing_category.get('slug')},
+                {'main_category_name': existing_category.get('name')},
+            ]
+            if sub_category_ids:
+                product_filters.append({'category_id': {'$in': sub_category_ids}})
+
+            products_using_category = products_collection.count_documents(
+                {'$or': product_filters}
+            )
+            if products_using_category > 0:
+                return jsonify({
+                    'success': False,
+                    'error': (
+                        f'Cannot delete main category. {products_using_category} product(s) '
+                        'are assigned under this category.'
+                    )
+                }), 400
+        else:
+            products_using_category = products_collection.count_documents(
+                {'category_id': category_id})
+            if products_using_category > 0:
+                return jsonify({
+                    'success': False,
+                    'error': f'Cannot delete category. {products_using_category} product(s) are using this category.'
+                }), 400
 
         result = categories_collection.delete_one({'id': category_id})
         if result.deleted_count == 0:
@@ -744,6 +897,150 @@ def delete_category(category_id):
 
         return jsonify({'success': True, 'message': 'Category deleted successfully'}), 200
     except (ConnectionError, ValueError, TypeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# ==================== UPLOAD APIs ====================
+
+
+@app.route('/api/media-pages', methods=['GET'])
+@require_admin
+def get_media_pages():
+    """List media library pages for site image uploads."""
+    try:
+        pages = list(media_pages_collection.find(
+            {}, {'_id': 0}).sort('name', 1))
+        pages_json = convert_to_json_serializable(pages)
+        return jsonify({'success': True, 'pages': pages_json}), 200
+    except (ConnectionError, ValueError, TypeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/media-pages', methods=['POST'])
+@require_admin
+def create_media_page():
+    """Create a page entry for organizing site media uploads."""
+    try:
+        data = request.get_json() or {}
+        name = (data.get('name') or '').strip()
+
+        if len(name) < 2:
+            return jsonify({'success': False, 'error': 'Page name must be at least 2 characters long'}), 400
+
+        slug = sanitize_path_segment(name)
+        if not slug:
+            return jsonify({'success': False, 'error': 'Invalid page name'}), 400
+
+        existing_page = media_pages_collection.find_one({'slug': slug})
+        if existing_page:
+            return jsonify({'success': False, 'error': 'A page with this name already exists'}), 400
+
+        page = {
+            'id': str(uuid.uuid4()),
+            'name': name,
+            'slug': slug,
+            'created_at': datetime.utcnow().isoformat(),
+            'created_by': str(request.user['user_id']),
+        }
+
+        media_pages_collection.insert_one(page)
+        page_json = convert_to_json_serializable(page)
+        return jsonify({'success': True, 'page': page_json}), 201
+    except (ConnectionError, ValueError, TypeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/uploads/presign', methods=['POST'])
+@require_admin
+def presign_upload():
+    """Generate a presigned PUT URL for direct browser upload to S3."""
+    try:
+        data = request.get_json() or {}
+        filename = (data.get('filename') or '').strip()
+        content_type = (data.get('contentType') or '').strip()
+        folder = (data.get('folder') or 'products').strip()
+
+        if not filename or not content_type:
+            return jsonify({'success': False, 'error': 'filename and contentType are required'}), 400
+
+        if content_type not in ALLOWED_IMAGE_TYPES:
+            return jsonify({'success': False, 'error': 'Invalid file type. Allowed: JPEG, PNG, WebP'}), 400
+
+        if folder not in ALLOWED_UPLOAD_ROOT_FOLDERS:
+            return jsonify({'success': False, 'error': 'Invalid upload folder'}), 400
+
+        if not AWS_CDN_BASE_URL:
+            return jsonify({'success': False, 'error': 'Upload service not configured (AWS_CDN_BASE_URL missing)'}), 500
+
+        s3_client = get_s3_client()
+        if not s3_client:
+            return jsonify({'success': False, 'error': 'Upload service not configured (AWS credentials missing)'}), 500
+
+        try:
+            key, _ = build_upload_key(folder, filename, data)
+        except ValueError as exc:
+            return jsonify({'success': False, 'error': str(exc)}), 400
+
+        ext = filename.rsplit('.', 1)[-1].lower() if '.' in filename else 'webp'
+        if ext not in ALLOWED_IMAGE_EXTENSIONS:
+            return jsonify({'success': False, 'error': 'Invalid file extension'}), 400
+
+        upload_url = s3_client.generate_presigned_url(
+            'put_object',
+            Params={
+                'Bucket': AWS_S3_BUCKET,
+                'Key': key,
+                'ContentType': content_type,
+                'CacheControl': 'public, max-age=31536000, immutable',
+            },
+            ExpiresIn=PRESIGNED_URL_EXPIRY_SECONDS,
+        )
+
+        public_url = f"{AWS_CDN_BASE_URL}/{key}"
+
+        return jsonify({
+            'success': True,
+            'uploadUrl': upload_url,
+            'publicUrl': public_url,
+            'key': key,
+        }), 200
+    except ClientError as e:
+        return jsonify({'success': False, 'error': f'AWS error: {e.response["Error"]["Message"]}'}), 500
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/uploads', methods=['DELETE'])
+@require_admin
+def delete_upload():
+    """Delete an uploaded object from S3 by key or CloudFront URL."""
+    try:
+        data = request.get_json() or {}
+        key = (data.get('key') or '').strip()
+        image_url = (data.get('url') or '').strip()
+
+        if not key and image_url:
+            key = extract_s3_key_from_url(image_url)
+
+        if not key:
+            return jsonify({'success': False, 'error': 'key or url is required'}), 400
+
+        if '..' in key or key.startswith('/'):
+            return jsonify({'success': False, 'error': 'Invalid key'}), 400
+
+        root_folder = key.split('/', 1)[0]
+        if root_folder not in ALLOWED_UPLOAD_ROOT_FOLDERS:
+            return jsonify({'success': False, 'error': 'Invalid upload key'}), 400
+
+        s3_client = get_s3_client()
+        if not s3_client:
+            return jsonify({'success': False, 'error': 'Upload service not configured'}), 500
+
+        s3_client.delete_object(Bucket=AWS_S3_BUCKET, Key=key)
+
+        return jsonify({'success': True, 'message': 'Image deleted successfully', 'key': key}), 200
+    except ClientError as e:
+        return jsonify({'success': False, 'error': f'AWS error: {e.response["Error"]["Message"]}'}), 500
+    except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # ==================== PRODUCT APIs ====================
@@ -782,8 +1079,9 @@ def create_product():
 
         # Validate images array
         images = data.get('images', [])
-        if not isinstance(images, list):
-            return jsonify({'success': False, 'error': 'Images must be an array'}), 400
+        is_valid_images, image_error = validate_image_urls(images)
+        if not is_valid_images:
+            return jsonify({'success': False, 'error': image_error}), 400
 
         # SEO fields with defaults
         seo_title = data.get('seo_title', data['name'].strip())
@@ -967,6 +1265,9 @@ def update_product(product_id):
         if 'description' in data:
             update_data['description'] = data['description']
         if 'images' in data:
+            is_valid_images, image_error = validate_image_urls(data['images'])
+            if not is_valid_images:
+                return jsonify({'success': False, 'error': image_error}), 400
             update_data['images'] = data['images']
         if 'specifications' in data:
             update_data['specifications'] = data['specifications']
