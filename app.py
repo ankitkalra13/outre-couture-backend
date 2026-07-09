@@ -72,6 +72,7 @@ db = client[DB_NAME]
 products_collection = db['products']
 categories_collection = db['categories']
 media_pages_collection = db['media_pages']
+rfq_collection = db['rfq_requests']
 
 # Email Configuration
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
@@ -672,9 +673,16 @@ def get_main_categories():
 def get_sub_categories(main_category_slug):
     """Get sub-categories for a specific main category"""
     try:
-        # First find the main category
-        main_category = categories_collection.find_one(
-            {'slug': main_category_slug, 'type': 'main'})
+        # First find the main category (by slug or name)
+        main_category_title = main_category_slug.replace('-', ' ').title()
+        main_category = categories_collection.find_one({
+            'type': 'main',
+            '$or': [
+                {'slug': main_category_slug},
+                {'name': {'$regex': f'^{main_category_title}$', '$options': 'i'}},
+                {'name': {'$regex': f'^{main_category_slug}$', '$options': 'i'}},
+            ]
+        })
         if not main_category:
             return jsonify({'success': False, 'error': 'Main category not found'}), 404
 
@@ -1079,6 +1087,8 @@ def create_product():
 
         # Validate images array
         images = data.get('images', [])
+        if not images:
+            return jsonify({'success': False, 'error': 'At least one product image is required'}), 400
         is_valid_images, image_error = validate_image_urls(images)
         if not is_valid_images:
             return jsonify({'success': False, 'error': image_error}), 400
@@ -1126,12 +1136,14 @@ def get_products():
     try:
         # Query parameters
         category_id = request.args.get('category_id')
-        is_active = request.args.get('is_active', 'true').lower() == 'true'
+        is_active_param = request.args.get('is_active', 'true')
         limit = int(request.args.get('limit', 50))
         skip = int(request.args.get('skip', 0))
 
         # Build query
-        query = {'is_active': is_active}
+        query = {}
+        if is_active_param.lower() != 'all':
+            query['is_active'] = is_active_param.lower() == 'true'
         if category_id:
             query['category_id'] = category_id
 
@@ -1161,6 +1173,7 @@ def get_products():
 
         sort_criteria = sort_options.get(sort_by, [('name', 1)])
 
+        total = products_collection.count_documents(query)
         products = list(products_collection.find(query, {'_id': 0}).sort(
             sort_criteria).skip(skip).limit(limit))
 
@@ -1170,7 +1183,7 @@ def get_products():
         return jsonify({
             'success': True,
             'products': products_json,
-            'total': len(products),
+            'total': total,
             'limit': limit,
             'skip': skip
         }), 200
@@ -1199,26 +1212,47 @@ def get_products_by_main_category(main_category_slug):
     try:
         # Query parameters
         sub_category_id = request.args.get('sub_category_id')
-        is_active = request.args.get('is_active', 'true').lower() == 'true'
+        is_active_param = request.args.get('is_active', 'true')
         limit = int(request.args.get('limit', 50))
         skip = int(request.args.get('skip', 0))
 
         # Build query - check both main_category_slug and main_category_name
-        # Convert main_category_slug to title case for comparison with main_category_name
         main_category_title = main_category_slug.replace('-', ' ').title()
 
-        query = {
-            'is_active': is_active,
+        query_parts = [{
             '$or': [
                 {'main_category_slug': main_category_slug},
                 {'main_category_name': main_category_title}
             ]
-        }
+        }]
+        if is_active_param.lower() != 'all':
+            query_parts.append({'is_active': is_active_param.lower() == 'true'})
         if sub_category_id:
-            query['category_id'] = sub_category_id
+            query_parts.append({'category_id': sub_category_id})
 
+        search = request.args.get('search')
+        if search:
+            query_parts.append({
+                '$or': [
+                    {'name': {'$regex': search, '$options': 'i'}},
+                    {'description': {'$regex': search, '$options': 'i'}},
+                ]
+            })
+
+        query = query_parts[0] if len(query_parts) == 1 else {'$and': query_parts}
+
+        sort_by = request.args.get('sortBy', 'name')
+        sort_options = {
+            'name': [('name', 1)],
+            'name_desc': [('name', -1)],
+            'newest': [('created_at', -1)],
+            'oldest': [('created_at', 1)]
+        }
+        sort_criteria = sort_options.get(sort_by, [('name', 1)])
+
+        total = products_collection.count_documents(query)
         products = list(products_collection.find(
-            query, {'_id': 0}).skip(skip).limit(limit))
+            query, {'_id': 0}).sort(sort_criteria).skip(skip).limit(limit))
 
         # Convert to JSON serializable format
         products_json = convert_to_json_serializable(products)
@@ -1226,7 +1260,7 @@ def get_products_by_main_category(main_category_slug):
         return jsonify({
             'success': True,
             'products': products_json,
-            'total': len(products),
+            'total': total,
             'limit': limit,
             'skip': skip
         }), 200
@@ -1265,6 +1299,8 @@ def update_product(product_id):
         if 'description' in data:
             update_data['description'] = data['description']
         if 'images' in data:
+            if not data['images']:
+                return jsonify({'success': False, 'error': 'At least one product image is required'}), 400
             is_valid_images, image_error = validate_image_urls(data['images'])
             if not is_valid_images:
                 return jsonify({'success': False, 'error': image_error}), 400
@@ -1478,13 +1514,14 @@ def get_rfq_requests():
         if status:
             query['status'] = status
 
+        total = rfq_collection.count_documents(query)
         rfq_requests = list(rfq_collection.find(query, {'_id': 0}).sort(
             'created_at', -1).skip(skip).limit(limit))
 
         return jsonify({
             'success': True,
             'rfq_requests': rfq_requests,
-            'total': len(rfq_requests),
+            'total': total,
             'limit': limit,
             'skip': skip
         }), 200
