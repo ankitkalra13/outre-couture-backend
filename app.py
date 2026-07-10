@@ -1098,8 +1098,9 @@ def create_product():
         seo_description = data.get(
             'seo_description', data['description'].strip()[:160])
         seo_keywords = data.get('seo_keywords', '')
-        seo_slug = data.get(
-            'seo_slug', data['name'].strip().lower().replace(' ', '-'))
+        seo_slug = sanitize_path_segment(
+            data.get('seo_slug') or data['name'].strip()
+        ) or data['name'].strip().lower().replace(' ', '-')
 
         product = {
             'id': str(uuid.uuid4()),
@@ -1172,6 +1173,8 @@ def get_products():
         }
 
         sort_criteria = sort_options.get(sort_by, [('name', 1)])
+        # Stable pagination: identical names must not reshuffle across skip/limit pages
+        sort_criteria = list(sort_criteria) + [('id', 1)]
 
         total = products_collection.count_documents(query)
         products = list(products_collection.find(query, {'_id': 0}).sort(
@@ -1249,6 +1252,8 @@ def get_products_by_main_category(main_category_slug):
             'oldest': [('created_at', 1)]
         }
         sort_criteria = sort_options.get(sort_by, [('name', 1)])
+        # Stable pagination: identical names must not reshuffle across skip/limit pages
+        sort_criteria = list(sort_criteria) + [('id', 1)]
 
         total = products_collection.count_documents(query)
         products = list(products_collection.find(
@@ -1318,7 +1323,7 @@ def update_product(product_id):
         if 'seo_keywords' in data:
             update_data['seo_keywords'] = data['seo_keywords']
         if 'seo_slug' in data:
-            update_data['seo_slug'] = data['seo_slug']
+            update_data['seo_slug'] = sanitize_path_segment(data['seo_slug']) or data['seo_slug']
 
         products_collection.update_one(
             {'id': product_id},
@@ -1355,10 +1360,12 @@ def get_product_by_slug(main_category, slug):
     try:
         # Find product by slug and main category (try multiple approaches)
         product = None
+        slug_normalized = sanitize_path_segment(slug) or slug
+        slug_candidates = list({slug, slug_normalized, f'{slug_normalized}-'})
 
         # First try: exact match with main_category_slug
         product = products_collection.find_one({
-            'seo_slug': slug,
+            'seo_slug': {'$in': slug_candidates},
             'main_category_slug': main_category,
             'is_active': True
         }, {'_id': 0})
@@ -1366,7 +1373,7 @@ def get_product_by_slug(main_category, slug):
         # Second try: match with main_category_name (case-insensitive)
         if not product:
             product = products_collection.find_one({
-                'seo_slug': slug,
+                'seo_slug': {'$in': slug_candidates},
                 'main_category_name': {'$regex': f'^{main_category}$', '$options': 'i'},
                 'is_active': True
             }, {'_id': 0})
@@ -1374,7 +1381,7 @@ def get_product_by_slug(main_category, slug):
         # Third try: find by slug only (fallback)
         if not product:
             product = products_collection.find_one({
-                'seo_slug': slug,
+                'seo_slug': {'$in': slug_candidates},
                 'is_active': True
             }, {'_id': 0})
 
@@ -1394,8 +1401,10 @@ def get_product_by_slug(main_category, slug):
                 product_name_slug = re.sub(
                     r'-+', '-', product_name_slug).strip('-')
 
+                existing_slug = sanitize_path_segment(p.get('seo_slug') or '')
+
                 # Check if generated slug matches
-                if product_name_slug == slug:
+                if product_name_slug == slug_normalized or existing_slug == slug_normalized:
                     product = p
                     break
 
