@@ -252,7 +252,13 @@ def main():
         client.admin.command('ping')
         print("✓ Database connection successful")
 
-        # Clear existing data (optional - comment out if you want to keep existing data)
+        # SAFETY: never wipe the DB unless explicitly requested
+        if os.getenv('INIT_DB_WIPE', '').lower() not in ('1', 'true', 'yes'):
+            print("✗ Refusing to clear existing data.")
+            print("  init_db.py would DELETE all products and categories.")
+            print("  To wipe and reseed intentionally, set INIT_DB_WIPE=true")
+            return
+
         print("\nClearing existing categories and products...")
         categories_collection.delete_many({})
         products_collection.delete_many({})

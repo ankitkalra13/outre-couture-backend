@@ -39,9 +39,9 @@ if [ ! -f "env.development" ]; then
     exit 1
 fi
 
-# Initialize database with sample data
-echo "Initializing database with sample data..."
-python3 init_db.py
+# Do NOT auto-run init_db.py — it deletes all products/categories.
+# Only seed manually when you intentionally want sample data:
+#   python3 init_db.py
 
 # Start the Flask application
 echo "Starting Flask application in development mode..."
