@@ -24,7 +24,7 @@ import bcrypt
 import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
-from backup_utils import backup_document
+from backup_utils import backup_document, backup_s3_object
 
 # Load environment-specific configuration
 ENV = os.getenv('FLASK_ENV', 'development')
@@ -488,6 +488,8 @@ def register():
         }
 
         result = users_collection.insert_one(user)
+        user_backup = {**user, '_id': result.inserted_id}
+        backup_document('users', user_backup)
         user['_id'] = str(result.inserted_id)
         del user['password']  # Don't return password
 
@@ -1049,9 +1051,51 @@ def delete_upload():
 
         s3_client.delete_object(Bucket=AWS_S3_BUCKET, Key=key)
 
-        return jsonify({'success': True, 'message': 'Image deleted successfully', 'key': key}), 200
+        return jsonify({
+            'success': True,
+            'message': 'Image deleted successfully',
+            'key': key,
+        }), 200
     except ClientError as e:
         return jsonify({'success': False, 'error': f'AWS error: {e.response["Error"]["Message"]}'}), 500
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/uploads/confirm-backup', methods=['POST'])
+@require_admin
+def confirm_upload_backup():
+    """After a successful direct S3 upload, copy the object into backups/assets/."""
+    try:
+        data = request.get_json() or {}
+        key = (data.get('key') or '').strip().lstrip('/')
+
+        if not key:
+            return jsonify({'success': False, 'error': 'key is required'}), 400
+        if '..' in key or key.startswith('/'):
+            return jsonify({'success': False, 'error': 'Invalid key'}), 400
+
+        root_folder = key.split('/', 1)[0]
+        if root_folder not in ALLOWED_UPLOAD_ROOT_FOLDERS:
+            return jsonify({'success': False, 'error': 'Invalid upload key'}), 400
+
+        ok = backup_s3_object(key)
+        if not ok:
+            return jsonify({
+                'success': False,
+                'error': 'Failed to copy upload into backups/assets (check S3 permissions)',
+            }), 500
+
+        return jsonify({
+            'success': True,
+            'message': 'Upload backed up successfully',
+            'key': key,
+            'backupKey': (
+                f"backups/assets/"
+                f"{datetime.utcnow().strftime('%Y')}/{datetime.utcnow().strftime('%B')}/"
+                f"{key}"
+            ),
+        }), 200
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
@@ -1349,45 +1393,22 @@ def update_product(product_id):
 @app.route('/api/products/<product_id>', methods=['DELETE'])
 @require_admin
 def delete_product(product_id):
-    """Delete a product and its S3 images (Admin only)"""
+    """Delete a product (Admin only).
+
+    Product images are kept in S3 for recovery. Remove orphan images later with:
+    python cleanup_orphan_product_images.py --older-than-days 30 --apply
+    """
     try:
         product = products_collection.find_one({'id': product_id})
         if not product:
             return jsonify({'success': False, 'error': 'Product not found'}), 404
 
-        deleted_images = []
-        failed_images = []
-        s3_client = get_s3_client()
-
-        for image_url in product.get('images') or []:
-            key = extract_s3_key_from_url(image_url)
-            if not key:
-                failed_images.append({'url': image_url, 'error': 'Could not resolve S3 key'})
-                continue
-
-            if not s3_client:
-                failed_images.append({'url': image_url, 'error': 'S3 not configured'})
-                continue
-
-            try:
-                s3_client.delete_object(Bucket=AWS_S3_BUCKET, Key=key)
-                deleted_images.append(key)
-            except ClientError as e:
-                failed_images.append({
-                    'url': image_url,
-                    'key': key,
-                    'error': e.response['Error'].get('Message', str(e)),
-                })
-            except Exception as e:
-                failed_images.append({'url': image_url, 'key': key, 'error': str(e)})
-
         products_collection.delete_one({'id': product_id})
 
         return jsonify({
             'success': True,
-            'message': 'Product deleted successfully',
-            'deleted_images': deleted_images,
-            'failed_images': failed_images,
+            'message': 'Product deleted successfully. Images kept in S3 for recovery; run cleanup script later to remove orphans.',
+            'kept_images': product.get('images') or [],
         }), 200
     except (ConnectionError, ValueError, TypeError) as e:
         return jsonify({'success': False, 'error': str(e)}), 500
@@ -1496,7 +1517,7 @@ def submit_rfq():
         }
 
         rfq_collection.insert_one(rfq_data)
-        backup_document('rfqs', rfq_data)
+        backup_document('rfq_requests', rfq_data)
 
         # Send email to admin
         admin_email = os.getenv('ADMIN_EMAIL', 'admin@outrecouture.com')
@@ -1605,6 +1626,10 @@ def update_rfq_status(rfq_id):
 
         if result.matched_count == 0:
             return jsonify({'success': False, 'error': 'RFQ not found'}), 404
+
+        updated_rfq = rfq_collection.find_one({'id': rfq_id}, {'_id': 0})
+        if updated_rfq:
+            backup_document('rfq_requests', updated_rfq)
 
         return jsonify({'success': True, 'message': 'RFQ status updated successfully'}), 200
     except (ConnectionError, ValueError, TypeError) as e:

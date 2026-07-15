@@ -139,6 +139,12 @@ def create_admin_user():
         result = users_collection.insert_one(admin_user)
 
         if result.inserted_id:
+            try:
+                from backup_utils import backup_document
+                backup_document('users', {**admin_user, '_id': result.inserted_id})
+            except Exception as backup_error:
+                print(f"⚠️  Admin created but backup failed: {backup_error}")
+
             print(f"\n✅ Admin user '{username}' created successfully!")
             print(f"User ID: {result.inserted_id}")
             print(f"Role: admin")
