@@ -1349,13 +1349,46 @@ def update_product(product_id):
 @app.route('/api/products/<product_id>', methods=['DELETE'])
 @require_admin
 def delete_product(product_id):
-    """Delete a product (Admin only)"""
+    """Delete a product and its S3 images (Admin only)"""
     try:
-        result = products_collection.delete_one({'id': product_id})
-        if result.deleted_count == 0:
+        product = products_collection.find_one({'id': product_id})
+        if not product:
             return jsonify({'success': False, 'error': 'Product not found'}), 404
 
-        return jsonify({'success': True, 'message': 'Product deleted successfully'}), 200
+        deleted_images = []
+        failed_images = []
+        s3_client = get_s3_client()
+
+        for image_url in product.get('images') or []:
+            key = extract_s3_key_from_url(image_url)
+            if not key:
+                failed_images.append({'url': image_url, 'error': 'Could not resolve S3 key'})
+                continue
+
+            if not s3_client:
+                failed_images.append({'url': image_url, 'error': 'S3 not configured'})
+                continue
+
+            try:
+                s3_client.delete_object(Bucket=AWS_S3_BUCKET, Key=key)
+                deleted_images.append(key)
+            except ClientError as e:
+                failed_images.append({
+                    'url': image_url,
+                    'key': key,
+                    'error': e.response['Error'].get('Message', str(e)),
+                })
+            except Exception as e:
+                failed_images.append({'url': image_url, 'key': key, 'error': str(e)})
+
+        products_collection.delete_one({'id': product_id})
+
+        return jsonify({
+            'success': True,
+            'message': 'Product deleted successfully',
+            'deleted_images': deleted_images,
+            'failed_images': failed_images,
+        }), 200
     except (ConnectionError, ValueError, TypeError) as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
