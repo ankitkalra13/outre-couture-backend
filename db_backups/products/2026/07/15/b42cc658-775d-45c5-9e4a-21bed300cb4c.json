@@ -1,0 +1,28 @@
+{
+  "_id": "6a53ff8dea1b3606c6509d64",
+  "id": "b42cc658-775d-45c5-9e4a-21bed300cb4c",
+  "name": "HEART PRINT BLACK NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/df531386-a692-41f6-9f71-70059f11d233.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/4d240eff-3c93-449e-a3ec-f4d5cbbe5669.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/d2b1f53f-12d1-4fa0-9d3e-757b1fc536b0.webp"
+  ],
+  "specifications": {
+    "color": "BLACK & RED",
+    "material": "",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "HEART PRINK BLACK NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "heart-prink-black-night-suit",
+  "created_at": "2026-07-12T20:56:45.114504",
+  "updated_at": "2026-07-12T20:57:58.310539",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

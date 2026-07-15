@@ -1,0 +1,28 @@
+{
+  "_id": "6a540f04ea1b3606c6509d70",
+  "id": "e3121fd6-e97a-4597-a203-7ebe32e8e202",
+  "name": "HEART PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/4d326f27-04af-4c6e-8594-19c5981380c1.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/0c94fa85-de95-483c-826c-b484f12709da.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/77b7055e-b5e0-402b-8cc0-d747fac114d3.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "WHITE MIX",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "HEART PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "heart-print-night-suit",
+  "created_at": "2026-07-12T22:02:44.860380",
+  "updated_at": "2026-07-12T22:02:44.860392",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

@@ -1,0 +1,29 @@
+{
+  "_id": "6a53f818ea1b3606c6509d5e",
+  "id": "eb141700-90e0-4be1-9f66-2ca019ba6191",
+  "name": "ONE SHOULDER TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "This elegant  top features a modern one-shoulder neckline with a sleek silhouette that beautifully complements your pregnancy style. while the tailored fit provides gentle support for your growing bump.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/7876730b-26ca-48fd-9ffe-6375ce897439.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/0f2e585b-2fb0-4a46-b88f-919681a9e0fa.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/2363f616-338b-44b8-a300-5dd1daca6144.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/9a617a5d-ba39-4013-9027-c7af4df29f1b.webp"
+  ],
+  "specifications": {
+    "material": "100%POLYESTER",
+    "color": "ROSE PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "ONE SHOULDER TOP",
+  "seo_description": "This elegant  top features a modern one-shoulder neckline with a sleek silhouette that beautifully complements your pregnancy style. while the tailored fit prov",
+  "seo_keywords": "",
+  "seo_slug": "one-shoulder-top",
+  "created_at": "2026-07-12T20:24:56.437189",
+  "updated_at": "2026-07-12T20:24:56.437203",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

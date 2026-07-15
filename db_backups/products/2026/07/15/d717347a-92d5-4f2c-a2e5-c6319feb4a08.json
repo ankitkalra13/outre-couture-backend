@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e732ea1b3606c6509d51",
+  "id": "d717347a-92d5-4f2c-a2e5-c6319feb4a08",
+  "name": "ORANGE & WHITE MIX PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f138a4df-098b-404e-9487-ee6e2f2c6c35.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/17a38dd3-b18e-412c-b570-774b8dd5ba76.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/e74b15df-0643-42db-8da4-e682cb6c4dda.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "ORANGE & WHITE MIX",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "ORANGE & WHITE MIX PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "orange-white-mix-print-night-suit",
+  "created_at": "2026-07-12T19:12:50.741169",
+  "updated_at": "2026-07-12T19:12:50.741181",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

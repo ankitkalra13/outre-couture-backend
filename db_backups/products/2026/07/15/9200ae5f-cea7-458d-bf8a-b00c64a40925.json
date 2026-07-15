@@ -1,0 +1,28 @@
+{
+  "_id": "6a53da87ea1b3606c6509d49",
+  "id": "9200ae5f-cea7-458d-bf8a-b00c64a40925",
+  "name": "PINK FLORAL NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/202206e9-279c-40f7-b023-605486d6ba33.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/a23bc69d-cf9c-473b-8fa3-b184a406dfb6.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/df7d4444-3025-40fc-8f75-8609f85fe16b.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "PINK MIX",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "PINK FLORAL NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "pink-floral-night-suit",
+  "created_at": "2026-07-12T18:18:47.581521",
+  "updated_at": "2026-07-12T18:18:47.581537",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

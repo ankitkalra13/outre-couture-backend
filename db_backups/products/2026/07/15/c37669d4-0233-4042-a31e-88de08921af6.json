@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e970ea1b3606c6509d53",
+  "id": "c37669d4-0233-4042-a31e-88de08921af6",
+  "name": "ASYMMETRIC TUNIC TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed with a modern asymmetric silhoutte for a stylish look. And flexible fit during pregnancy.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/502eff9c-f07d-4db3-8e9e-43d59781c399.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/ef4887f3-4dac-4c55-af5f-ee05e55b118b.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/084d2c7c-1046-47cd-8a5b-b2b9556e0792.webp"
+  ],
+  "specifications": {
+    "material": "100% COTTON SPANDEX",
+    "color": "OFF-WHITE",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "ASYMMETRIC TUNIC TOP",
+  "seo_description": "Designed with a modern asymmetric silhoutte for a stylish look. And flexible fit during pregnancy.",
+  "seo_keywords": "",
+  "seo_slug": "asymmetric-tunic-top",
+  "created_at": "2026-07-12T19:22:24.581837",
+  "updated_at": "2026-07-12T19:22:24.581848",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

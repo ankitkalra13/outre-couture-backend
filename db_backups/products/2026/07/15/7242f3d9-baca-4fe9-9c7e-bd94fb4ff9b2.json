@@ -1,0 +1,28 @@
+{
+  "_id": "6a541190ea1b3606c6509d71",
+  "id": "7242f3d9-baca-4fe9-9c7e-bd94fb4ff9b2",
+  "name": "PINK HEART PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f73dafd7-9d3a-4e46-8253-a933366e0574.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f9710fdf-6e98-439c-85af-c9651db7ca0d.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/83d40283-06d4-4445-9e14-ff77e16d3566.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "HOT PINK",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "PINK HEART PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "pink-heart-print-night-suit",
+  "created_at": "2026-07-12T22:13:36.294509",
+  "updated_at": "2026-07-12T22:13:36.294523",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

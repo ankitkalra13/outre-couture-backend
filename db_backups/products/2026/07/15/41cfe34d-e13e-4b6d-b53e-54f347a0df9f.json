@@ -1,0 +1,28 @@
+{
+  "_id": "6a540e2dea1b3606c6509d6f",
+  "id": "41cfe34d-e13e-4b6d-b53e-54f347a0df9f",
+  "name": "CHECK PRINT MAROON NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/fd00136b-90cd-43e3-97dc-30dad9ef04b8.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/030cf59d-f4d4-4e29-a10f-402da82ef1a7.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/4f7ab5ce-cc3d-419a-86dc-101b3218b8d2.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "MAROON",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "CHECK PRINT MAROON NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "check-print-maroon-night-suit",
+  "created_at": "2026-07-12T21:59:09.986723",
+  "updated_at": "2026-07-12T21:59:09.986738",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

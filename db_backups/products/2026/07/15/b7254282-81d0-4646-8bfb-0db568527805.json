@@ -1,0 +1,28 @@
+{
+  "_id": "6a541e26ea1b3606c6509d7a",
+  "id": "b7254282-81d0-4646-8bfb-0db568527805",
+  "name": "BLACK SPORTS BRA",
+  "category_id": "a3c94af0-df60-4c78-81d1-f17c1c22fe32",
+  "category_name": "ACTIVE WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/500e82d5-0de9-4ab1-b4f0-507eb14b40d6.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/5408642b-1100-46f3-b882-1d2f958f3f44.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/4bbcdc41-7d07-4798-b969-11602a9347f9.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "BLACK",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "BLACK SPORTS BRA",
+  "seo_description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "seo_keywords": "",
+  "seo_slug": "black-sports-bra",
+  "created_at": "2026-07-12T23:07:18.437981",
+  "updated_at": "2026-07-12T23:07:18.437995",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

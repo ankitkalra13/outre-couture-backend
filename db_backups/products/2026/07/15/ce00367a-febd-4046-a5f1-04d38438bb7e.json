@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e0b5ea1b3606c6509d4b",
+  "id": "ce00367a-febd-4046-a5f1-04d38438bb7e",
+  "name": "LIGHT PINK NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/fbca0412-5384-455a-b4ef-9a2ca014026f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/eaef5fdd-0257-4658-b867-2b2ef1f2b1df.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/60e66179-0e77-4954-99f8-678fe6e8e6bf.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "LIGHT PINK",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "LIGHT PINK NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "light-pink-night-suit",
+  "created_at": "2026-07-12T18:45:09.320082",
+  "updated_at": "2026-07-12T18:45:09.320099",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

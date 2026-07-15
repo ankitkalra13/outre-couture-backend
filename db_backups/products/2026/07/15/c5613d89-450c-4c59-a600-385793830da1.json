@@ -1,0 +1,29 @@
+{
+  "_id": "6a54004fea1b3606c6509d65",
+  "id": "c5613d89-450c-4c59-a600-385793830da1",
+  "name": "SLEEVELESS TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "This sleeveless maternity top features a ruffled V-neck and relaxed empire-waist fit for all-day comfort and effortless style.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/baee9c64-0e91-4b81-b7a1-bc1ccac24200.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/5cb7d001-3f51-4991-8376-b62821987e7a.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/93a9d78f-d549-443b-b843-4849a7deaddc.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/af86e301-bcaa-4c0d-9dbf-078cc0b8e1c7.webp"
+  ],
+  "specifications": {
+    "material": "POLY SPANDEX",
+    "color": "FUCHSIA PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "SLEEVELESS TOP",
+  "seo_description": "This sleeveless maternity top features a ruffled V-neck and relaxed empire-waist fit for all-day comfort and effortless style.",
+  "seo_keywords": "",
+  "seo_slug": "sleeveless-top",
+  "created_at": "2026-07-12T20:59:59.038186",
+  "updated_at": "2026-07-12T20:59:59.038197",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

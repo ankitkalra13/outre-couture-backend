@@ -1,0 +1,29 @@
+{
+  "_id": "6a53e697ea1b3606c6509d50",
+  "id": "0be234ac-b98d-4d6f-8fe5-e5dfa1824c96",
+  "name": "ROUND NECK RUCHED TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Soft, stretchable round-neck maternity top with side ruching for a comfortable. Flexible fit throughtout pregnancy.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/5ac876db-5c36-4365-9a94-b6698cfcf644.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/9370b5d0-4449-4904-8c5d-58492c2b1bea.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/f2906444-f795-41f5-9e2d-abae289fc177.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/744eca56-4a5c-44d5-8574-0e023c452fb7.webp"
+  ],
+  "specifications": {
+    "material": "COTTON SPANDEX",
+    "color": "BABY PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "ROUND NECK RUCHED TOP",
+  "seo_description": "Soft, stretchable round-neck maternity top with side ruching for a comfortable. Flexible fit throughtout pregnancy.",
+  "seo_keywords": "",
+  "seo_slug": "round-neck-ruched-top",
+  "created_at": "2026-07-12T19:10:15.692624",
+  "updated_at": "2026-07-12T19:10:15.692640",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

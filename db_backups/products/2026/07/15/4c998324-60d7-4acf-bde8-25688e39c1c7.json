@@ -1,0 +1,28 @@
+{
+  "_id": "6a53de81ea1b3606c6509d4a",
+  "id": "4c998324-60d7-4acf-bde8-25688e39c1c7",
+  "name": "DARK BLUE FLORAL PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/8a6c21b5-22e5-414e-a660-ef1e8498bff9.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/e1d69fbc-f2c4-4849-aae6-440a261e8e1b.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/56126c85-4669-4e25-9762-c0f159fdcb72.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "DARK BLUE",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "DARK BLUE FLORAL PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "dark-blue-floral-print-night-suit",
+  "created_at": "2026-07-12T18:35:45.810127",
+  "updated_at": "2026-07-12T18:35:45.810140",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

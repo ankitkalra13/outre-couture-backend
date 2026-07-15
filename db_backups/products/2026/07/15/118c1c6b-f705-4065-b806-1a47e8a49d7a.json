@@ -1,0 +1,28 @@
+{
+  "_id": "6a53eaffea1b3606c6509d55",
+  "id": "118c1c6b-f705-4065-b806-1a47e8a49d7a",
+  "name": "PINK PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Stay stylish and comfortable throughout your pregnancy with this 100% Polyester Peplum Top. Designed with a relaxed fit and a flattering peplum silhouette.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/1ca24591-19f8-4d47-8fb5-d7fe68ae6556.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/e0188b55-ca3d-443e-9caf-5b0bda1530c7.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/e2ee141b-8825-4246-9f5d-89e1d97c7fa8.webp"
+  ],
+  "specifications": {
+    "material": "100% POLYESTER",
+    "color": "LIGHT PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "PINK PEPLUM TOP",
+  "seo_description": "Stay stylish and comfortable throughout your pregnancy with this 100% Polyester Peplum Top. Designed with a relaxed fit and a flattering peplum silhouette.",
+  "seo_keywords": "",
+  "seo_slug": "pink-peplum-top",
+  "created_at": "2026-07-12T19:29:03.322363",
+  "updated_at": "2026-07-12T19:29:03.322375",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

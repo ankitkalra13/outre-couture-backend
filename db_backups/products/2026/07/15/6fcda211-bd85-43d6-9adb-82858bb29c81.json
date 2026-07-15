@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e7e4ea1b3606c6509d52",
+  "id": "6fcda211-bd85-43d6-9adb-82858bb29c81",
+  "name": "SOLID PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Crafted from smooth poly knit fabric with a stylish peplum silhouette , offering a relaxed fit during pregnancy.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/1fa169ad-0788-4caa-9e10-606bc5b9e38f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/c5f874e4-bb67-449e-907a-4837c47536af.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/ef0175a7-2c94-42c2-af29-aea7d834f7a3.webp"
+  ],
+  "specifications": {
+    "material": "POLY KNIT",
+    "color": "STONE BEIGE",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "SOLID PEPLUM TOP",
+  "seo_description": "Crafted from smooth poly knit fabric with a stylish peplum silhouette , offering a relaxed fit during pregnancy.",
+  "seo_keywords": "",
+  "seo_slug": "solid-peplum-top",
+  "created_at": "2026-07-12T19:15:48.187404",
+  "updated_at": "2026-07-12T19:15:48.187421",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

@@ -1,0 +1,28 @@
+{
+  "_id": "6a53edccea1b3606c6509d57",
+  "id": "4da49931-2b91-4096-b640-957c2d3fadbd",
+  "name": "POLKA DOT PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f7ff51ea-b7de-429a-97bb-940476db6058.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/a7d8e9d6-beb4-4ac9-96f6-753e537866d5.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f146d1d0-fb4c-4d7b-838f-2da1caead448.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "BLACK & WHITE",
+    "size": "XS , S , M ,L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "POLKA DOT PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "polka-dot-print-night-suit",
+  "created_at": "2026-07-12T19:41:00.332206",
+  "updated_at": "2026-07-12T19:41:00.332223",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

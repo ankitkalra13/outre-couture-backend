@@ -24,6 +24,7 @@ import bcrypt
 import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
+from backup_utils import backup_document
 
 # Load environment-specific configuration
 ENV = os.getenv('FLASK_ENV', 'development')
@@ -760,6 +761,7 @@ def create_category():
             })
 
         categories_collection.insert_one(category)
+        backup_document('categories', category)
         # Convert to JSON serializable format
         category_json = convert_to_json_serializable(category)
         return jsonify({'success': True, 'category': category_json}), 201
@@ -845,6 +847,7 @@ def update_category(category_id):
         # Get updated category
         updated_category = categories_collection.find_one(
             {'id': category_id}, {'_id': 0})
+        backup_document('categories', updated_category)
         # Convert to JSON serializable format
         updated_category_json = convert_to_json_serializable(updated_category)
         return jsonify({'success': True, 'category': updated_category_json}), 200
@@ -951,6 +954,7 @@ def create_media_page():
         }
 
         media_pages_collection.insert_one(page)
+        backup_document('media_pages', page)
         page_json = convert_to_json_serializable(page)
         return jsonify({'success': True, 'page': page_json}), 201
     except (ConnectionError, ValueError, TypeError) as e:
@@ -1124,6 +1128,7 @@ def create_product():
         }
 
         products_collection.insert_one(product)
+        backup_document('products', product)
         # Convert to JSON serializable format
         product_json = convert_to_json_serializable(product)
         return jsonify({'success': True, 'product': product_json}), 201
@@ -1333,6 +1338,7 @@ def update_product(product_id):
         # Get updated product
         updated_product = products_collection.find_one(
             {'id': product_id}, {'_id': 0})
+        backup_document('products', updated_product)
         # Convert to JSON serializable format
         updated_product_json = convert_to_json_serializable(updated_product)
         return jsonify({'success': True, 'product': updated_product_json}), 200
@@ -1457,6 +1463,7 @@ def submit_rfq():
         }
 
         rfq_collection.insert_one(rfq_data)
+        backup_document('rfqs', rfq_data)
 
         # Send email to admin
         admin_email = os.getenv('ADMIN_EMAIL', 'admin@outrecouture.com')

@@ -1,0 +1,29 @@
+{
+  "_id": "6a53f5fdea1b3606c6509d5c",
+  "id": "3c187f54-b11b-41c4-8046-f3107cfa5d5c",
+  "name": "SOLID PINK PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed with a stylish scalloped V-neck, elegant pearl-detailed puff sleeves with tie-up cuffs, and a relaxed fit that comfortable for your growing baby bump.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/c376f678-1fa6-49f7-897d-6a401199657f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/ea2e9a19-b6c1-4dbb-a099-32b2213d6a97.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/86936ff0-2076-4686-ae22-a4a9cd488755.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/bb7cb2d7-3f1f-461a-9101-d88e312c70c1.webp"
+  ],
+  "specifications": {
+    "material": "100%POLYESTER",
+    "color": "HOT PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "SOLID PINK PEPLUM TOP",
+  "seo_description": "Designed with a stylish scalloped V-neck, elegant pearl-detailed puff sleeves with tie-up cuffs, and a relaxed fit that comfortable for your growing baby bump.",
+  "seo_keywords": "",
+  "seo_slug": "solid-pink-peplum-top",
+  "created_at": "2026-07-12T20:15:57.601198",
+  "updated_at": "2026-07-12T20:15:57.601210",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

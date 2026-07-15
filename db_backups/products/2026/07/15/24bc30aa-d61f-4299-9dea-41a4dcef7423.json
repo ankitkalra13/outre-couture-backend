@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e97bea1b3606c6509d54",
+  "id": "24bc30aa-d61f-4299-9dea-41a4dcef7423",
+  "name": "BLUE & WHITE PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/2d8b0af9-43ea-4ca6-baca-761344dc60e2.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/75e697cd-5bdf-44a4-b047-e9f9c5fcae6b.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/06ce81eb-8c0d-4954-b11c-f33e84a8b58c.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "BLUE & WHITE",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "BLUE & WHITE PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "blue-white-print-night-suit",
+  "created_at": "2026-07-12T19:22:35.242398",
+  "updated_at": "2026-07-12T19:22:35.242413",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

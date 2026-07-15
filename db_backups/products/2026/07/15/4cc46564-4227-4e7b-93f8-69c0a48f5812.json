@@ -1,0 +1,28 @@
+{
+  "_id": "6a5408bcea1b3606c6509d6b",
+  "id": "4cc46564-4227-4e7b-93f8-69c0a48f5812",
+  "name": "CREAM SATIN NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/8d90b17c-7e27-4c26-9221-ad8f8b73b5be.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/a78d1d6f-a997-40ee-bdd2-940dcd5e54c9.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/b1435665-92d7-4074-8a7f-a921792f2b34.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "CREAM",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "CREAM SATIN NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "cream-satin-night-suit",
+  "created_at": "2026-07-12T21:35:56.544624",
+  "updated_at": "2026-07-12T21:35:56.544637",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

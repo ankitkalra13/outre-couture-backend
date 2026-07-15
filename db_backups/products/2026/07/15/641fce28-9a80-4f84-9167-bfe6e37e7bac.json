@@ -1,0 +1,29 @@
+{
+  "_id": "6a54069bea1b3606c6509d69",
+  "id": "641fce28-9a80-4f84-9167-bfe6e37e7bac",
+  "name": "RUFFLE PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "This maternity top features a V-neck, elegant ruffle detailing, and full sleeves with a flowy silhouette for a graceful and comfortable fit.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/f6739f75-ad05-4605-8c15-c52754ea6340.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/a81527b2-418b-4339-b82e-c000e6b5e27e.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/0c2b26d6-433d-4433-a604-36f4c2cda850.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/4bcb38e7-0ad3-4333-8529-bb8897d42158.webp"
+  ],
+  "specifications": {
+    "material": "100% VISCOSE",
+    "color": "BLUSH PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "RUFFLE PEPLUM TOP",
+  "seo_description": "This maternity top features a V-neck, elegant ruffle detailing, and full sleeves with a flowy silhouette for a graceful and comfortable fit.",
+  "seo_keywords": "",
+  "seo_slug": "ruffle-peplum-top",
+  "created_at": "2026-07-12T21:26:51.250490",
+  "updated_at": "2026-07-12T21:26:51.250504",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

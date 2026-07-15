@@ -1,0 +1,28 @@
+{
+  "_id": "6a541350ea1b3606c6509d73",
+  "id": "8b28e4b9-51cb-46b2-93aa-1fe75f7f3d03",
+  "name": "SATIN NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/50279bdb-3028-402a-a9fd-fd5d32a3e6d1.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/7d43431d-977f-42ff-be56-636b450f61a2.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/4c9ba855-51d6-4fc0-856d-4ad6ba3a90ba.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "DARK RED",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "SATIN NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "satin-night-suit",
+  "created_at": "2026-07-12T22:21:04.196779",
+  "updated_at": "2026-07-12T22:21:04.196791",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

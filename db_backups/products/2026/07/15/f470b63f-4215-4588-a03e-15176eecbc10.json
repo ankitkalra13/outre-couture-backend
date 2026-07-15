@@ -1,0 +1,28 @@
+{
+  "_id": "6a54143bea1b3606c6509d74",
+  "id": "f470b63f-4215-4588-a03e-15176eecbc10",
+  "name": "WHITE ABSTRACT PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/439616ba-5f96-4c58-b76a-633d274e4c1d.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/f3217019-a17c-46d3-b605-7b19aa962d3d.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/34011e53-b50f-4a8d-991b-99f3ea98d945.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "WHITE AND BLUE",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "WHITE ABSTRACT PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "white-abstract-print-night-suit",
+  "created_at": "2026-07-12T22:24:59.695497",
+  "updated_at": "2026-07-12T22:24:59.695514",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

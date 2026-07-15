@@ -1,0 +1,28 @@
+{
+  "_id": "6a53e423ea1b3606c6509d4d",
+  "id": "311eb0ce-ee27-4fa4-9347-0d0e59c75054",
+  "name": "FLORAL PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "comfortable fabric designed to provide a flexible fit for pregnant women throughout every stage of pregnancy.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/7f333bea-4ae7-4f42-9972-11cce6ee8ff0.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/f8debb2a-1179-4ecc-9d8e-5e4c703b929c.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/8a7082e0-a612-4e80-a9ae-1ce31fa348fc.webp"
+  ],
+  "specifications": {
+    "material": "POLY SPANDEX",
+    "color": "PINK",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "FLORAL PEPLUM TOP",
+  "seo_description": "comfortable fabric designed to provide a flexible fit for pregnant women throughout every stage of pregnancy.",
+  "seo_keywords": "",
+  "seo_slug": "floral-peplum-top",
+  "created_at": "2026-07-12T18:59:47.361116",
+  "updated_at": "2026-07-12T18:59:47.361133",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

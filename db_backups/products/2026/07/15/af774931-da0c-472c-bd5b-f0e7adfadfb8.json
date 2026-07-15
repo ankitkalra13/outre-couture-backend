@@ -1,0 +1,28 @@
+{
+  "_id": "6a542065ea1b3606c6509d7c",
+  "id": "af774931-da0c-472c-bd5b-f0e7adfadfb8",
+  "name": "DARK RED SPORTS BRA",
+  "category_id": "a3c94af0-df60-4c78-81d1-f17c1c22fe32",
+  "category_name": "ACTIVE WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/6e6e1309-cc13-422c-aff6-40b90af1ff69.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/b43acf66-9dad-4c77-be6b-4f6c1d67cf2f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/ffa20a20-6da5-419c-845a-213292005c03.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "DARK RED",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "DARK RED SPORTS BRA",
+  "seo_description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "seo_keywords": "",
+  "seo_slug": "dark-red-sports-bra",
+  "created_at": "2026-07-12T23:16:53.213760",
+  "updated_at": "2026-07-12T23:16:53.213780",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

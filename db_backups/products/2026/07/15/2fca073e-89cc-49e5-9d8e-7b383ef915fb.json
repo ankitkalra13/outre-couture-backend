@@ -1,0 +1,28 @@
+{
+  "_id": "6a540b5eea1b3606c6509d6e",
+  "id": "2fca073e-89cc-49e5-9d8e-7b383ef915fb",
+  "name": "WHITE MULTI COLOUR NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/182e2080-76cc-4750-9393-236749bd1f23.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/0e64ad4b-bcc6-4bcf-8947-2dca626237c6.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/d67218e8-1b59-4bdf-b1d2-a7e7f900f07d.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "WHITE",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "WHITE MULTI COLOUR NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "white-multi-colour-night-suit",
+  "created_at": "2026-07-12T21:47:10.289293",
+  "updated_at": "2026-07-12T21:47:10.289309",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

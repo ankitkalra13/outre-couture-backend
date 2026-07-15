@@ -1,0 +1,29 @@
+{
+  "_id": "6a53f3b6ea1b3606c6509d5b",
+  "id": "ba3db1e7-5690-4254-bd6d-a0ae357d3303",
+  "name": "SAGE GREEN PEPLUM TOP",
+  "category_id": "f52930cf-27a6-4f92-80ca-1f12cbcaef3a",
+  "category_name": "MATERNITY WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Featuring a flattering V-neck, empire waist, puff half sleeves, and a relaxed fit for growing baby bumps. Lightweight, breathable, and perfect during pregnancy.",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/910d448e-872f-4038-ab7c-a153e4185777.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/ad72aec2-f4a8-4ff7-8f17-c37f05135db3.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/af5612ec-f3fb-44b7-a22b-7cf6ce27742e.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/maternity-wear/2f9d90a2-71ca-4548-aa8b-64785baa9880.webp"
+  ],
+  "specifications": {
+    "material": "COTTON SCHIFFLI",
+    "color": "SAGE GREEN",
+    "size": "XS, S, M, L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "SAGE GREEN PEPLUM TOP",
+  "seo_description": "Featuring a flattering V-neck, empire waist, puff half sleeves, and a relaxed fit for growing baby bumps. Lightweight, breathable, and perfect during pregnancy.",
+  "seo_keywords": "",
+  "seo_slug": "sage-green-peplum-top",
+  "created_at": "2026-07-12T20:06:14.641068",
+  "updated_at": "2026-07-12T20:06:14.641083",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

@@ -1,0 +1,28 @@
+{
+  "_id": "6a541213ea1b3606c6509d72",
+  "id": "e3d0e0b4-9290-49a1-95db-8ebfbd8315b6",
+  "name": "CHERRY PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/cb7cb1b4-352e-41c1-befc-fa3a83a1d486.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/130dfbfe-64ff-4cdc-8624-08f8496cf669.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/73fb9e99-083f-4151-a442-27bdc00d162a.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "IVORY MIX",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "CHERRY PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "cherry-print-night-suit",
+  "created_at": "2026-07-12T22:15:47.429036",
+  "updated_at": "2026-07-12T22:15:47.429051",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

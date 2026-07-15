@@ -1,0 +1,28 @@
+{
+  "_id": "6a53fe9cea1b3606c6509d63",
+  "id": "78b66db6-1208-496e-ae43-eb538c32e3bd",
+  "name": "CREAM ABSTRACT PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/7c6d033f-1f35-4f98-ab2f-8e86cf6d3238.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/be011429-787d-489d-b3e8-1ea7e13f071f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/458be574-19bb-4e38-81eb-7ee6a5e73217.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "CREAM",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "CREAM ABSTRACT PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "cream-abstract-print-night-suit",
+  "created_at": "2026-07-12T20:52:44.486309",
+  "updated_at": "2026-07-12T20:52:44.486322",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

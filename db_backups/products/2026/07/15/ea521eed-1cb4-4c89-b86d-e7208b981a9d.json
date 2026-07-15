@@ -1,0 +1,28 @@
+{
+  "_id": "6a53f21fea1b3606c6509d59",
+  "id": "ea521eed-1cb4-4c89-b86d-e7208b981a9d",
+  "name": "WHITE MIX PRINT NIGHT SUIT",
+  "category_id": "e4409213-439d-4978-a00c-98a3e39f1014",
+  "category_name": "SLEEP WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Designed for unmatched comfort and effortless elegance",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/a2dfc4d2-f42e-40cb-91f7-289b20ab5c83.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/a67036a1-bdea-4190-9f0a-8fe025b7b79a.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/sleep-wear/022e0795-2b5a-41dd-9e5d-0f38ed087889.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "WHITE MIX",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "WHITE MIX PRINT NIGHT SUIT",
+  "seo_description": "Designed for unmatched comfort and effortless elegance",
+  "seo_keywords": "",
+  "seo_slug": "white-mix-print-night-suit",
+  "created_at": "2026-07-12T19:59:27.504343",
+  "updated_at": "2026-07-12T19:59:27.504356",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

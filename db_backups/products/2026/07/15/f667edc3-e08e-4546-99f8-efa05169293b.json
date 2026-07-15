@@ -1,0 +1,28 @@
+{
+  "_id": "6a5417e7ea1b3606c6509d75",
+  "id": "f667edc3-e08e-4546-99f8-efa05169293b",
+  "name": "MINT GREEN GYM SET",
+  "category_id": "a3c94af0-df60-4c78-81d1-f17c1c22fe32",
+  "category_name": "ACTIVE WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/c8e35d35-72a7-4a38-bf03-c52caff4d4e5.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/3332fb29-e950-48d8-bc49-294cfa438d0f.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/04996aa3-4ecc-472d-a880-f86c1eab31ed.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "MINT GREEN",
+    "size": "XS , S , M , L , XL , XXL"
+  },
+  "is_active": true,
+  "seo_title": "MINT GREEN GYM SET",
+  "seo_description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "seo_keywords": "",
+  "seo_slug": "mint-green-gym-set",
+  "created_at": "2026-07-12T22:40:39.131309",
+  "updated_at": "2026-07-12T22:40:39.131326",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}

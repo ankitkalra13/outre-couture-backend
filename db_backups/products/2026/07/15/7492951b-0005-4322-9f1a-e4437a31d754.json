@@ -1,0 +1,28 @@
+{
+  "_id": "6a541c8dea1b3606c6509d79",
+  "id": "7492951b-0005-4322-9f1a-e4437a31d754",
+  "name": "WHITE GYM SET",
+  "category_id": "a3c94af0-df60-4c78-81d1-f17c1c22fe32",
+  "category_name": "ACTIVE WEAR",
+  "main_category_name": "WOMEN'S",
+  "main_category_slug": "women",
+  "description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "images": [
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/91701fc4-f460-4e61-87d0-ae9645e03bbe.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/f20c05fc-3a24-45e7-8b73-865feff2c249.webp",
+    "https://d1sqdv3jlbrt4f.cloudfront.net/products/women/active-wear/25bc4084-6d47-4bb8-b942-fc221f3d0732.webp"
+  ],
+  "specifications": {
+    "material": "",
+    "color": "WHITE",
+    "size": "XS , S , M , L, XXL"
+  },
+  "is_active": true,
+  "seo_title": "WHITE GYM SET",
+  "seo_description": "Gym wear that helps you perform at your best whether you're lifting or pushing beyond your limits",
+  "seo_keywords": "",
+  "seo_slug": "white-gym-set",
+  "created_at": "2026-07-12T23:00:29.868112",
+  "updated_at": "2026-07-12T23:00:29.868133",
+  "created_by": "68af4d1d2a13e77700e7a0dc"
+}
